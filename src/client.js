@@ -105,6 +105,11 @@ function Client(manager, name, config = {}) {
 		delete client.config.awayMessage;
 	}
 
+	if (client.config.uploadCanvas) {
+		client.config.clientSettings.removeImageMetadata = client.config.uploadCanvas;
+		delete client.config.uploadCanvas;
+	}
+
 	if (client.config.clientSettings.awayMessage) {
 		client.awayMessage = client.config.clientSettings.awayMessage;
 	}
@@ -284,7 +289,8 @@ Client.prototype.connect = function (args, isStartup = false) {
 		network.channels[0].pushMessage(
 			client,
 			new Msg({
-				text: "You have manually disconnected from this network before, use the /connect command to connect again.",
+				text:
+					"You have manually disconnected from this network before, use the /connect command to connect again.",
 			}),
 			true
 		);

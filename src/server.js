@@ -782,8 +782,9 @@ function getClientConfiguration() {
 	config.defaults.saslAccount = "";
 	config.defaults.saslPassword = "";
 
-	if (Uploader) {
+	if (Helper.config.fileUpload.enable) {
 		config.fileUploadMaxFileSize = Uploader.getMaxFileSize();
+		config.serverRemoveMetadata = Uploader.removeMetadataAvailable();
 	}
 
 	return config;

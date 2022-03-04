@@ -248,15 +248,16 @@
 				<div>
 					<label class="opt">
 						<input
-							:checked="$store.state.settings.uploadCanvas"
+							:checked="$store.state.settings.removeImageMetadata"
 							type="checkbox"
-							name="uploadCanvas"
+							name="removeImageMetadata"
 						/>
-						Attempt to remove metadata from images before uploading
+						Remove metadata from uploaded images
 						<span
+							v-if="!$store.state.serverConfiguration.serverRemoveMetadata"
 							class="tooltipped tooltipped-n tooltipped-no-delay"
-							aria-label="This option renders the image into a canvas element to remove metadata from the image.
-This may break orientation if your browser does not support that."
+							aria-label="This option renders the image into a canvas element to remove metadata from the image,
+as server-side metadata removal is unavailable. This may break orientation if your browser does not support that."
 						>
 							<button class="extra-help" />
 						</span>

@@ -69,6 +69,7 @@
     "yarn": "1.22.17"
   },
   "optionalDependencies": {
+    "sharp": "0.30.2",
     "sqlite3": "https://github.com/mapbox/node-sqlite3#918052b538b0effe6c4a44c74a16b2749c08a0d2"
   },
   "devDependencies": {

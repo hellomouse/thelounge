@@ -144,7 +144,8 @@ class Uploader {
 		this.tokenKeepAlive = setInterval(() => socket.emit("upload:ping", token), 40 * 1000);
 
 		if (
-			store.state.settings.uploadCanvas &&
+			store.state.settings.removeImageMetadata &&
+			!store.state.serverConfiguration.serverRemoveMetadata &&
 			file.type.startsWith("image/") &&
 			!file.type.includes("svg") &&
 			file.type !== "image/gif"
@@ -225,6 +226,11 @@ class Uploader {
 
 		const formData = new FormData();
 		formData.append("file", file);
+
+		if (store.state.serverConfiguration.serverRemoveMetadata) {
+			formData.append("removeMetadata", store.state.settings.removeImageMetadata);
+		}
+
 		this.xhr.open("POST", `uploads/new/${token}`);
 		this.xhr.send(formData);
 	}
